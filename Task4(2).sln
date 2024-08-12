@@ -1,25 +1,64 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.10.35122.118
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task4(2)", "Task4(2)\Task4(2).csproj", "{A593F64F-1547-47FE-A415-A23782498142}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A593F64F-1547-47FE-A415-A23782498142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A593F64F-1547-47FE-A415-A23782498142}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A593F64F-1547-47FE-A415-A23782498142}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A593F64F-1547-47FE-A415-A23782498142}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D3DB3A5C-DC4E-4326-ABC3-2C6FDB6F2D1F}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Task4_2_
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter the number of gas stations: ");
+            int size = int.Parse(Console.ReadLine());
+
+            int[] gas = new int[size];
+            int[] cost = new int[size];
+
+            Console.WriteLine("Enter the gas values :");
+            for (int i = 0; i < size; i++)
+            {
+                gas[i] = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("Enter the cost values:");
+            for (int i = 0; i < size; i++)
+            {
+                cost[i] = int.Parse(Console.ReadLine());
+            }
+
+            int totalGas = 0;
+            int totalCost = 0;
+            int currentBalance = 0;
+            int startIndex = 0;
+
+            for (int i = 0; i < size; i++)
+            {
+                totalGas += gas[i];
+                totalCost += cost[i];
+                currentBalance += gas[i] - cost[i];
+
+                if (currentBalance < 0)
+                {
+                    startIndex = i + 1;
+                    currentBalance = 0;
+                }
+            }
+
+            int result;
+            if (totalGas >= totalCost)
+            {
+                result = startIndex;
+            }
+            else
+            {
+                result = -1;
+            }
+
+            Console.WriteLine("The starting gas station index is: " + result);
+
+            Console.ReadLine();
+        }
+    }
+}
