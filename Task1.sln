@@ -1,25 +1,60 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.10.35122.118
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1", "Task1\Task1.csproj", "{1DC8C0A9-2CC5-4972-9176-FC9D8ED3CA63}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1DC8C0A9-2CC5-4972-9176-FC9D8ED3CA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1DC8C0A9-2CC5-4972-9176-FC9D8ED3CA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1DC8C0A9-2CC5-4972-9176-FC9D8ED3CA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1DC8C0A9-2CC5-4972-9176-FC9D8ED3CA63}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EC5901FF-5EE6-4D52-BDB1-450B546F9068}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NewTask1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the size of the array:");
+           
+            int size = int.Parse(Console.ReadLine());
+
+            if (size >= 3 && size <= 104)
+            {
+                int[] num = new int[size];
+
+
+                Console.WriteLine($"Enter {size} the values:");
+                bool valid = true;
+
+                for (int i = 0; i < size; i++)
+                {
+                    int values = int.Parse(Console.ReadLine());
+
+                    if (values >= -1000 && values <= 1000)
+                    {
+                        num[i] = values;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input.");
+                        valid = false;
+                        break;
+                    }
+                }
+
+                if (valid)
+                {
+                    Array.Sort(num);
+                    Array.Reverse(num);
+
+                    int product = num[0] * num[1] * num[2];
+
+
+                    Console.WriteLine("The product  is " + product);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input.");
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
