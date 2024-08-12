@@ -1,25 +1,57 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.10.35122.118
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 2", "Day 2\Day 2.csproj", "{748025FE-53F3-45D8-87B2-5DE6E87BD1CD}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{748025FE-53F3-45D8-87B2-5DE6E87BD1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{748025FE-53F3-45D8-87B2-5DE6E87BD1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{748025FE-53F3-45D8-87B2-5DE6E87BD1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{748025FE-53F3-45D8-87B2-5DE6E87BD1CD}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4DC9F3A2-3CEB-46FF-A9B7-9FA2219A4700}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NewTask1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.Write("Enter the number of elements: ");
+            int size = int.Parse(Console.ReadLine());
+            int[] nums = new int[size];
+            Console.WriteLine("Enter element : ");
+
+            for (int i = 0; i < size; i++)
+            {
+                nums[i] = int.Parse(Console.ReadLine());
+            }
+            int Sum = int.MinValue;
+            int start = 0;
+            int end = 0;
+
+            for (int i = 0; i < size; i++)
+            {
+                int currentSum = 0;
+                for (int j = i; j < size; j++)
+                {
+                    currentSum=currentSum+nums[j];
+
+                    if (currentSum > Sum)
+                    {
+                        Sum = currentSum;
+                        start = i;
+                        end = j;
+                    }
+                }
+            }
+
+      
+            Console.Write("The subarray  [");
+            for (int i = start; i <= end; i++)
+            {
+                Console.Write(nums[i]);
+                if (i < end)
+                {
+                    Console.Write(", ");
+                }
+            }
+            Console.WriteLine($"] has the largest sum {Sum}");
+            Console.ReadLine();
+        }
+    }
+}
