@@ -1,25 +1,61 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.10.35122.118
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task4(1)", "Task4(1)\Task4(1).csproj", "{232D645E-9EF3-4CC4-8202-45085C7F9741}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{232D645E-9EF3-4CC4-8202-45085C7F9741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{232D645E-9EF3-4CC4-8202-45085C7F9741}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{232D645E-9EF3-4CC4-8202-45085C7F9741}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{232D645E-9EF3-4CC4-8202-45085C7F9741}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0D15F4E1-9D0A-4840-B77D-23CB3668E5A4}
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Task4_1_
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter the number of elements: ");
+            int size = int.Parse(Console.ReadLine());
+            int[] nums = new int[size];
+
+            Console.WriteLine("Enter elements:");
+
+            for (int i = 0; i < size; i++)
+            {
+                nums[i] = int.Parse(Console.ReadLine());
+            }
+
+
+            for (int i = 1; i < size; i++)
+            {
+                int key = nums[i];
+                int j = i - 1;
+
+                while (j >= 0 && nums[j] > key)
+                {
+                    nums[j + 1] = nums[j]; 
+                    j--;
+                }
+
+                nums[j + 1] = key;
+            }
+
+
+            Console.WriteLine("Repeated values:");
+
+            for (int i = 0; i < size - 1; i++)
+            {
+              
+                if (nums[i] == nums[i + 1])
+                {
+                   
+                    if (i == 0 || nums[i] != nums[i - 1])
+                    {
+                        Console.WriteLine(nums[i]);
+                    }
+                }
+            }      
+            Console.ReadLine();
+        }
+    }
+}
